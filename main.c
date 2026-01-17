@@ -6,15 +6,14 @@
 /*   By: lurossi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 15:25:20 by lurossi           #+#    #+#             */
-/*   Updated: 2026/01/17 15:53:00 by lurossi          ###   ########.fr       */
+/*   Updated: 2026/01/17 16:16:35 by ccrucian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	rush(int a, int b);
 
-int main()
+int	main(void)
 {
 	rush(5, 5);
 	return (0);
 }
-
