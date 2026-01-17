@@ -6,22 +6,15 @@
 /*   By: lurossi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 15:25:20 by lurossi           #+#    #+#             */
-/*   Updated: 2026/01/17 15:25:29 by lurossi          ###   ########.fr       */
+/*   Updated: 2026/01/17 15:53:00 by lurossi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void	rush(int a, int b);
+
 int main()
 {
-rush(1, 5);
-ft_putchar('\n');
-rush(1, 1);
-ft_putchar('\n');
-rush(0, 10);
-ft_putchar('\n');
-rush(5, 1);
-ft_putchar('\n');
-rush(5, 5);
-ft_putchar('\n');
-return (0);
+	rush(5, 5);
+	return (0);
 }
 

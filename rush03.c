@@ -6,9 +6,11 @@
 /*   By: lurossi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 14:20:05 by lurossi           #+#    #+#             */
-/*   Updated: 2026/01/17 15:25:45 by lurossi          ###   ########.fr       */
+/*   Updated: 2026/01/17 15:53:26 by lurossi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+void	ft_putchar(char a);
 
 void	righeInizioFine(int x)
 {
