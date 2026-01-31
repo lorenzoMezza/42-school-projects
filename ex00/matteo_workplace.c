@@ -6,7 +6,7 @@
 /*   By: mbrunial <mbrunial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:00:38 by mbrunial          #+#    #+#             */
-/*   Updated: 2026/01/31 18:46:09 by mbrunial         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:57:31 by mbrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ ft_strlen(char *str);
 
 check_3(char *str, int triplette_len);
 
+/*
+ * one_and_nzero take a number of zero to conver to a string to pass to 
+ * print_dict()
+ * 
+ * return a string with n 0 and 1 at the start is NULL terminated
+ */
 char	*one_and_nzero(int nzero)
 {
 	int		i_str;
@@ -37,7 +43,14 @@ char	*one_and_nzero(int nzero)
 
 /*
  * nzero is magic formula don't touch
- funzione non testata
+ * funzione non testata
+ * 
+ * prende una stringa nel formato corretto 4567
+ * 000123 non  e' corretto
+ * 
+ * VA SPEZZETTATA PER LA NROMA LO FACCIO DOMNICA 
+ * 
+ * 	passa le triplette alla funzione scirtta che pensera a stamapre
  */
 int	str_start(char *str)
 	{
