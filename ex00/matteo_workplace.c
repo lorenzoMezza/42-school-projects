@@ -6,7 +6,7 @@
 /*   By: mbrunial <mbrunial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:00:38 by mbrunial          #+#    #+#             */
-/*   Updated: 2026/01/31 17:35:53 by mbrunial         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:46:09 by mbrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,13 @@ int	str_start(char *str)
 		triplette[2] = str[i_str + 2];
 		check_3(&triplette, 3);
 		i_str += 3;
-		if (ft_strlen >= 1)
+		if (nzero >= 1)
 		{
-			nzero_str = one_and_nzero(str_len * 3);
+			nzero_str = one_and_nzero(nzero);
 			// qui print dickt prende il valore della funzione che sta sopra
 			// print_dict()
 			free(nzero_str);
+			nzero -= 3;
 		}
 	}
 }
