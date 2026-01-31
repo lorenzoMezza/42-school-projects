@@ -6,19 +6,30 @@
 /*   By: mbrunial <mbrunial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 12:54:45 by mbrunial          #+#    #+#             */
-/*   Updated: 2026/01/31 18:50:34 by mbrunial         ###   ########.fr       */
+/*   Updated: 2026/01/31 19:07:44 by mbrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <unistd.h>
 
+char	*is_number_valid_edge_case(char *dummy)
+{
+	int	i;
+
+	i = 0;
+	if (dummy[i] == '\0')
+		return (NULL);
+	if (dummy[i] == '-' && dummy[i + 1] != '\0' && dummy[i + 1] == '0'
+		&& dummy[i + 2] == '\0')
+		return (dummy + 1);
+	return (NULL);
+}
+
 /*
  * is_number_valid returns 1 if the string contains only digits,
  * and 0 otherwise.
  *
- * ATTENCYION this function modify the str src srting if you dont
- * want this create a temp string which you save somewhere
  * 
  * It does NOT handle negative numbers, the '-' sign,
  * decimal points, or the special case "-0".
@@ -32,14 +43,14 @@ char	*is_number_valid(char *str)
 	i = 0;
 	start_with_zero = 1;
 	dummy = str;
-	if (dummy[i] == '\0')
+	if (is_number_valid_edge_case == NULL)
 		return (NULL);
+	else
+		return (is_number_valid_edge_case);
 	while (dummy[i])
 	{
 		if (!(dummy[i] >= '0' && dummy[i] <= '9'))
-		{
 			return (NULL);
-		}
 		else if (start_with_zero == 1 && dummy[i] == '0' && dummy[i + 1] != '\0'
 			&& dummy[i + 1] != '0')
 		{
