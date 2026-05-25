@@ -1,52 +1,49 @@
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmezzaba <lmezzaba@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/25 12:54:17 by lmezzaba          #+#    #+#             */
+/*   Updated: 2026/05/25 12:55:20 by lmezzaba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	ft_strlen(const char *s)
+#include "get_next_line.h"
+
+int	has_newline(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (1);
 		i++;
-	return (i);
+	}
+	return (0);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*substr_dup(char *s, int start, int len)
 {
-	unsigned char		*pdest;
-	const unsigned char	*psrc;
+	char	*out;
+	int		i;
 
-	if (!dest && !src)
+	i = 0;
+	if (!s || len <= 0)
 		return (NULL);
-
-	pdest = (unsigned char *)dest;
-	psrc = (const unsigned char *)src;
-
-	while (n--)
-		*pdest++ = *psrc++;
-
-	return (dest);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	len1;
-	size_t	len2;
-	char	*concat;
-
-	if (!s1 || !s2)
+	out = malloc(len + 1);
+	if (!out)
 		return (NULL);
-
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-
-	concat = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!concat)
-		return (NULL);
-
-	ft_memcpy(concat, s1, len1);
-	ft_memcpy(concat + len1, s2, len2);
-
-	concat[len1 + len2] = '\0';
-
-	return (concat);
+	while (i < len && s[start + i])
+	{
+		out[i] = s[start + i];
+		i++;
+	}
+	out[i] = '\0';
+	return (out);
 }
