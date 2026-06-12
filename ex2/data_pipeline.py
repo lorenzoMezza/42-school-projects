@@ -19,6 +19,7 @@ class DataProcessor(ABC):
     def output(self) -> tuple[int, str]:
         if len(self._data) == 0:
             raise Exception("No data available")
+
         rank = self._rank
         self._rank += 1
         return rank, self._data.pop(0)
@@ -41,19 +42,17 @@ class DataProcessor(ABC):
 
 class NumericProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
-        if type(data) in (int, float):
+        if isinstance(data, int | float):
             return True
-        if type(data) is list:
-            return all(type(item) in (int, float) for item in data)
+        if isinstance(data, list):
+            return all(isinstance(item, int | float) for item in data)
         return False
 
-    def ingest(
-        self,
-        data: int | float | list[int | float],
-    ) -> None:  # type: ignore[override]
+    def ingest(self, data: int | float | list[int | float]) -> None:
         if not self.validate(data):
             raise Exception("Improper numeric data")
-        if type(data) in (int, float):
+
+        if isinstance(data, int | float):
             self._data.append(str(data))
             self._add_processed(1)
         else:
@@ -64,19 +63,17 @@ class NumericProcessor(DataProcessor):
 
 class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
-        if type(data) is str:
+        if isinstance(data, str):
             return True
-        if type(data) is list:
-            return all(type(item) is str for item in data)
+        if isinstance(data, list):
+            return all(isinstance(item, str) for item in data)
         return False
 
-    def ingest(
-        self,
-        data: str | list[str],
-    ) -> None:  # type: ignore[override]
+    def ingest(self, data: str | list[str]) -> None:
         if not self.validate(data):
             raise Exception("Improper text data")
-        if type(data) is str:
+
+        if isinstance(data, str):
             self._data.append(data)
             self._add_processed(1)
         else:
@@ -87,31 +84,33 @@ class TextProcessor(DataProcessor):
 
 class LogProcessor(DataProcessor):
     def _is_log(self, data: Any) -> bool:
-        if type(data) is not dict:
+        if not isinstance(data, dict):
             return False
-        return all(type(key) is str and type(value) is str
-                   for key, value in data.items())
+
+        return all(
+            isinstance(key, str) and isinstance(value, str)
+            for key, value in data.items()
+        )
 
     def validate(self, data: Any) -> bool:
         if self._is_log(data):
             return True
-        if type(data) is list:
+        if isinstance(data, list):
             return all(self._is_log(item) for item in data)
         return False
 
     def _format_log(self, data: dict[str, str]) -> str:
         if "log_level" in data and "log_message" in data:
             return data["log_level"] + ": " + data["log_message"]
+
         items = [key + ": " + value for key, value in data.items()]
         return ", ".join(items)
 
-    def ingest(
-        self,
-        data: dict[str, str] | list[dict[str, str]],
-    ) -> None:  # type: ignore[override]
+    def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
         if not self.validate(data):
             raise Exception("Improper log data")
-        if type(data) is dict:
+
+        if isinstance(data, dict):
             self._data.append(self._format_log(data))
             self._add_processed(1)
         else:
@@ -127,7 +126,7 @@ class ExportPlugin(Protocol):
 
 class CSVExportPlugin:
     def _escape(self, value: str) -> str:
-        if ',' not in value and '"' not in value and '\n' not in value:
+        if "," not in value and '"' not in value and "\n" not in value:
             return value
         return '"' + value.replace('"', '""') + '"'
 
@@ -139,16 +138,20 @@ class CSVExportPlugin:
 
 class JSONExportPlugin:
     def _escape(self, value: str) -> str:
-        value = value.replace('\\', '\\\\')
+        value = value.replace("\\", "\\\\")
         value = value.replace('"', '\\"')
-        value = value.replace('\n', '\\n')
+        value = value.replace("\n", "\\n")
         return value
 
     def process_output(self, data: list[tuple[int, str]]) -> None:
         pairs: list[str] = []
+
         for rank, value in data:
-            pairs.append('"item_' + str(rank) + '": "'
-                         + self._escape(value) + '"')
+            pairs.append(
+                '"item_' + str(rank) + '": "'
+                + self._escape(value) + '"'
+            )
+
         print("JSON Output:")
         print("{" + ", ".join(pairs) + "}")
 
@@ -163,41 +166,53 @@ class DataStream:
     def process_stream(self, stream: list[Any]) -> None:
         for element in stream:
             processed = False
+
             for processor in self._processors:
                 if processor.validate(element):
                     processor.ingest(element)
                     processed = True
                     break
+
             if not processed:
-                print("DataStream error - Can't process element in stream: "
-                      + str(element))
+                print(
+                    "DataStream error - Can't process element in stream: "
+                    + str(element)
+                )
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
         for processor in self._processors:
             output_data: list[tuple[int, str]] = []
+
             for _ in range(nb):
                 if processor.remaining() == 0:
                     break
                 output_data.append(processor.output())
+
             if len(output_data) > 0:
                 plugin.process_output(output_data)
 
     def print_processors_stats(self) -> None:
         print("== DataStream statistics ==")
+
         if len(self._processors) == 0:
             print("No processor found, no data")
             return
+
         for processor in self._processors:
-            print(processor.display_name() + ": total "
-                  + str(processor.total_processed())
-                  + " items processed, remaining "
-                  + str(processor.remaining())
-                  + " on processor")
+            print(
+                processor.display_name()
+                + ": total "
+                + str(processor.total_processed())
+                + " items processed, remaining "
+                + str(processor.remaining())
+                + " on processor"
+            )
 
 
 def main() -> None:
     print("=== Code Nexus - Data Pipeline ===")
     print("Initialize Data Stream...")
+
     stream = DataStream()
     stream.print_processors_stats()
 
@@ -210,13 +225,19 @@ def main() -> None:
         "Hello world",
         [3.14, -1, 2.71],
         [
-            {"log_level": "WARNING",
-             "log_message": "Telnet access! Use ssh instead"},
-            {"log_level": "INFO", "log_message": "User wil is connected"},
+            {
+                "log_level": "WARNING",
+                "log_message": "Telnet access! Use ssh instead",
+            },
+            {
+                "log_level": "INFO",
+                "log_message": "User wil is connected",
+            },
         ],
         42,
         ["Hi", "five"],
     ]
+
     print("Send first batch of data on stream: " + str(first_batch))
     stream.process_stream(first_batch)
     stream.print_processors_stats()
@@ -230,12 +251,15 @@ def main() -> None:
         ["I love AI", "LLMs are wonderful", "Stay healthy"],
         [
             {"log_level": "ERROR", "log_message": "500 server crash"},
-            {"log_level": "NOTICE",
-             "log_message": "Certificate expires in 10 days"},
+            {
+                "log_level": "NOTICE",
+                "log_message": "Certificate expires in 10 days",
+            },
         ],
         [32, 42, 64, 84, 128, 168],
         "World hello",
     ]
+
     print("Send another batch of data: " + str(second_batch))
     stream.process_stream(second_batch)
     stream.print_processors_stats()
