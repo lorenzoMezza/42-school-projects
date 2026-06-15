@@ -586,7 +586,7 @@ class MazeGenerator:
     def ask_input(self) -> None:
         """Handle user interaction."""
         while True:
-            self.animation(8)
+            self.animation(6)
             self.render_maze()
 
             value = input(
