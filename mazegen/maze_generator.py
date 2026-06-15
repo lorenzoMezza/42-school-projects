@@ -536,7 +536,7 @@ class MazeGenerator:
             file.write("\n")
             file.write(f"{self.entry[0]},{self.entry[1]}\n")
             file.write(f"{self.exit[0]},{self.exit[1]}\n")
-            file.write(f"{self.solution}\n")
+            file.write(f"{self.solution}")
 
     def change_colors(self) -> None:
         """Rotate terminal colors."""

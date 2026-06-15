@@ -43,8 +43,8 @@ Generated files:
 
 ```text
 dist/
-├── mazegen-lmezzaba-lrossi-1.0.0.tar.gz
-└── mazegen-lmezzaba-lrossi-1.0.0-py3-none-any.whl
+├── mazegen-lmezzaba-lurossi-1.0.0.tar.gz
+└── mazegen-lmezzaba-lurossi-1.0.0-py3-none-any.whl
 ```
 
 ## Install the package
@@ -192,7 +192,7 @@ The reusable component of the project is the `MazeGenerator` class.
 Example:
 
 ```python
-from mezagen import MazeGenerator
+from mazegen import MazeGenerator
 
 maze = MazeGenerator("config.txt")
 
