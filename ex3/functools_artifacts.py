@@ -1,5 +1,3 @@
-"""Exercise 3 - Ancient Library."""
-
 from collections.abc import Callable
 from functools import lru_cache, partial, reduce, singledispatch
 from operator import add, mul

@@ -1,5 +1,3 @@
-"""Exercise 4 - Master's Tower."""
-
 from collections.abc import Callable
 from functools import wraps
 from time import perf_counter, sleep

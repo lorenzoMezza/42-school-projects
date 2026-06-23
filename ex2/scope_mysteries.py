@@ -1,5 +1,3 @@
-"""Exercise 2 - Memory Depths."""
-
 from collections.abc import Callable
 from typing import Any
 
