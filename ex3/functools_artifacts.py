@@ -7,7 +7,6 @@ from typing import Any
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
-    """Reduce spell powers using an operation supported by the library."""
     if not spells:
         return 0
     operations: dict[str, Callable[[int, int], int]] = {
@@ -22,7 +21,6 @@ def spell_reducer(spells: list[int], operation: str) -> int:
 
 
 def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
-    """Create three fixed-power elemental enchantment functions."""
     return {
         "fire": partial(base_enchantment, 50, "Fire"),
         "frost": partial(base_enchantment, 50, "Frost"),
@@ -32,7 +30,6 @@ def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
 
 @lru_cache(maxsize=None)
 def memoized_fibonacci(n: int) -> int:
-    """Return the nth Fibonacci number with recursive memoization."""
     if n < 0:
         raise ValueError("n must be non-negative")
     if n < 2:
@@ -41,7 +38,6 @@ def memoized_fibonacci(n: int) -> int:
 
 
 def spell_dispatcher() -> Callable[[Any], str]:
-    """Create a singledispatch spell description system."""
     @singledispatch
     def dispatch(spell: Any) -> str:
         return "Unknown spell type"

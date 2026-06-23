@@ -5,7 +5,6 @@ from typing import Any
 
 
 def mage_counter() -> Callable[[], int]:
-    """Create an independent counter closure."""
     count = 0
 
     def count_call() -> int:
@@ -17,7 +16,6 @@ def mage_counter() -> Callable[[], int]:
 
 
 def spell_accumulator(initial_power: int) -> Callable[[int], int]:
-    """Create a closure that keeps a running power total."""
     total_power = initial_power
 
     def add_power(amount: int) -> int:
@@ -29,14 +27,12 @@ def spell_accumulator(initial_power: int) -> Callable[[int], int]:
 
 
 def enchantment_factory(enchantment_type: str) -> Callable[[str], str]:
-    """Create an item-enchanting closure."""
     def enchant(item_name: str) -> str:
         return f"{enchantment_type} {item_name}"
     return enchant
 
 
 def memory_vault() -> dict[str, Callable]:
-    """Return store and recall closures over private memory."""
     memories: dict[str, Any] = {}
 
     def store(key: str, value: Any) -> None:

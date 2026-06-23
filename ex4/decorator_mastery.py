@@ -7,7 +7,7 @@ from typing import Any
 
 
 def spell_timer(func: Callable) -> Callable:
-    """Decorate a spell by printing its execution duration."""
+
     @wraps(func)
     def timed(*args: Any, **kwargs: Any) -> Any:
         print(f"Casting {func.__name__}...")
@@ -20,7 +20,7 @@ def spell_timer(func: Callable) -> Callable:
 
 
 def power_validator(min_power: int) -> Callable:
-    """Create a decorator that rejects a spell below min_power."""
+
     def decorate(func: Callable) -> Callable:
         @wraps(func)
         def validated(*args: Any, **kwargs: Any) -> Any:
@@ -35,7 +35,7 @@ def power_validator(min_power: int) -> Callable:
 
 
 def retry_spell(max_attempts: int) -> Callable:
-    """Create a decorator that retries a spell after exceptions."""
+
     if max_attempts < 1:
         raise ValueError("max_attempts must be at least 1")
 
@@ -55,16 +55,21 @@ def retry_spell(max_attempts: int) -> Callable:
 
 
 class MageGuild:
-    """A guild that validates mage names and casts validated spells."""
 
     @staticmethod
     def validate_mage_name(name: str) -> bool:
-        """A valid mage name is at least three letters/spaces long."""
-        return len(name) >= 3 and all(char.isalpha() or char == " " for char in name)
+
+        return (
+            len(name) >= 3
+            and all(
+                char.isalpha() or char == " "
+                for char in name
+            )
+        )
 
     @power_validator(10)
     def cast_spell(self, spell_name: str, power: int) -> str:
-        """Cast a spell after the decorator validates its power."""
+
         return f"Successfully cast {spell_name} with {power} power"
 
 

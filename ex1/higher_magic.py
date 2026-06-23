@@ -1,10 +1,5 @@
-"""Exercise 1 - Higher Realm."""
-
 from collections.abc import Callable
 from typing import Any
-
-Spell = Callable[[str, int], str]
-Condition = Callable[[str, int], bool]
 
 
 def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
@@ -51,5 +46,15 @@ if __name__ == "__main__":
     amplified = power_amplifier(fireball, 3)
     print("Original:", fireball("Dragon", 10))
     print("Amplified:", amplified("Dragon", 10))
-    print("Conditional:", conditional_caster(lambda _t, p: p >= 10, heal)("Mage", 5))
-    print("Sequence:", spell_sequence([fireball, heal])("Ogre", 12))
+    print(
+        "Conditional:",
+        conditional_caster(
+            lambda _t, p: p >= 10,
+            heal,
+        )("Mage", 5),
+    )
+
+    print(
+        "Sequence:",
+        spell_sequence([fireball, heal])("Ogre", 12),
+    )
