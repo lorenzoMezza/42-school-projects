@@ -117,6 +117,11 @@ or
 ./codexion 5 800 200 200 200 5 50 edf
 ```
 
+to check for race conditions:
+```bash
+cc -Wall -Wextra -pthread -fsanitize=thread -g -Iinclude src/*.c -o codexion_tsan
+```
+
 ### Arguments
 
 | Argument | Description |
