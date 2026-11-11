@@ -15,7 +15,6 @@ This is the **Common Core**, the first part of the curriculum. It starts with C 
 | **[AI and LLMs](ai)** | [Call Me Maybe](ai/call-me-maybe), [RAG against the machine](ai/rag-against-the-machine), [Agent Smith](ai/agent-smith) | LLM function calling, RAG, code agents, MCP |
 | **[Systems, DevOps and networks](systems-and-networks)** | [Born2beroot](systems-and-networks/born2beroot), [NetPractice](systems-and-networks/netpractice), [Inception](systems-and-networks/inception), [The Answer Protocol](systems-and-networks/the-answer-protocol), [tree_nity](systems-and-networks/tree_nity) | Linux, Docker, TCP/IP, concurrent servers in Go |
 | **[Web](web)** | [ft_transcendence](web/ft_transcendence) | Full-stack web, team work |
-| **[Career](career)** | [ft_resume](career/ft_resume) | Professional writing, interviews |
 
 ## All projects
 
@@ -62,12 +61,6 @@ This is the **Common Core**, the first part of the curriculum. It starts with C 
 |---|---|---|---|
 | [ft_transcendence](web/ft_transcendence) | The final team project: a complete web application. | Full stack, Docker | Code coming soon |
 
-### Career
-
-| Project | What it is | Language / tools | Status |
-|---|---|---|---|
-| [ft_resume](career/ft_resume) | A resume written to answer a real job offer, defended in an interview. | Writing | Code coming soon |
-
 ## The path through the Common Core
 
 At 42 the projects unlock in circles, each building on the previous ones:
@@ -78,7 +71,7 @@ At 42 the projects unlock in circles, each building on the previous ones:
 - **Circle 3:** Codexion, Fly-in, Call Me Maybe
 - **Circle 4:** Pac-Man, RAG against the machine, NetPractice
 - **Circle 5:** Agent Smith, Inception, The Answer Protocol, tree_nity
-- **Circle 6:** ft_transcendence, ft_resume
+- **Circle 6:** ft_transcendence
 
 ## How the repository is organised
 
@@ -88,7 +81,6 @@ python/                 Python Modules 00-10, A-Maze-ing, Fly-in, Pac-Man
 ai/                     Call Me Maybe, RAG against the machine, Agent Smith
 systems-and-networks/   Born2beroot, NetPractice, Inception, The Answer Protocol, tree_nity
 web/                    ft_transcendence
-career/                 ft_resume
 ```
 
 Every project folder has a README with what the project is, what it shows and how to run it.
