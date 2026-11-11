@@ -2,7 +2,7 @@
 
 The projects I built at [42](https://www.42network.org/), a peer-to-peer programming school with no teachers and no lectures: every project is a specification to implement on my own, then reviewed and tested by other students before it counts.
 
-This is the **2026 Common Core**, the first part of the curriculum. It starts with C written from scratch and moves to Python, systems, networks, AI and a final full-stack team project.
+This is the **Common Core**, the first part of the curriculum. It starts with C written from scratch and moves to Python, systems, networks, AI and a final full-stack team project.
 
 > The code is being added project by project: folders marked *Code coming soon* describe what the project is and will hold my solution.
 
