@@ -22,6 +22,12 @@ Every validated project is in this repository, in its own folder, with its origi
 | 4 | [RAG against the machine](rag-against-the-machine) | A model that answers from a set of documents | Python | 100 |
 | 4 | [NetPractice](netpractice) | Configure small IP networks | Networking | 100 |
 
+### Before the Common Core
+
+| Project | What it is |
+|---|---|
+| [C Piscine](piscine) | The four-week selection pool: Shell and C from scratch, 13 modules and team rushes |
+
 ### In progress
 
 | Circle | Project | What it is |
