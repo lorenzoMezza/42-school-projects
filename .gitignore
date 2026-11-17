@@ -1,0 +1,24 @@
+# Build output
+*.o
+*.a
+*.so
+*.out
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Local configuration and secrets
+.env
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
